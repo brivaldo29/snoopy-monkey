@@ -1,0 +1,300 @@
+<html><head><base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inspiración Diaria</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 20px 0;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .message-card {
+      background: linear-gradient(45deg, #fff1eb 0%, #ace0f9 100%);
+    }
+    
+    .verse-card {
+      background: linear-gradient(45deg, #d4fc79 0%, #96e6a1 100%);
+    }
+    
+    .videos-card {
+      background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 100%);
+    }
+
+    .snoopy-card {
+      background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+    }
+    
+    .header {
+      text-align: center;
+      padding: 2rem;
+      color: #2c3e50;
+    }
+    
+    .notification-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .modal-backdrop {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .message-modal .modal-content {
+      background: linear-gradient(45deg, #fff1eb 0%, #ace0f9 100%);
+    }
+
+    .verse-modal .modal-content {
+      background: linear-gradient(45deg, #d4fc79 0%, #96e6a1 100%);
+    }
+
+    .snoopy-modal .modal-content {
+      background: linear-gradient(45deg, #a8edea 0%, #fed6e3 100%);
+    }
+
+    .modal-body {
+      padding: 2rem;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .profile-img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      display: block;
+      object-fit: cover;
+    }
+
+    .health-tip {
+      background: white;
+      padding: 1rem;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>✨ Hola, MonkeyNovia 🙉 ✨</h1>
+      <p class="lead">Esta aplicación es unica y exclusivamente para ti, la he creado con mi corazón para que encuentres en ella motivación todos los días</p>
+    </div>
+
+    <div class="card message-card" data-bs-toggle="modal" data-bs-target="#messageModal">
+      <div class="card-body">
+        <h2 class="card-title">Mensaje Motivacional del Día</h2>
+        <p id="daily-message" class="card-text"></p>
+      </div>
+    </div>
+
+    <div class="card verse-card" data-bs-toggle="modal" data-bs-target="#verseModal">
+      <div class="card-body">
+        <h2 class="card-title">Versículo del Día</h2>
+        <p id="daily-verse" class="card-text"></p>
+      </div>
+    </div>
+
+    <div class="card snoopy-card" data-bs-toggle="modal" data-bs-target="#snoopyModal">
+      <div class="card-body text-center">
+        <h2 class="card-title">Esta sección es para tu mood SnoopyEnfermera</h2>
+        <img src="https://i.pinimg.com/originals/59/fc/fc/59fcfc5a2add2860f3d652e22ef9692b.png" alt="Snoopy Nurse" class="profile-img">
+        <p class="card-text">¡Haz clic para ver consejos de salud y enfermería!</p>
+      </div>
+    </div>
+
+    <div class="card videos-card">
+      <div class="card-body">
+        <h2 class="card-title">Videos Inspiracionales</h2>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/videoseries?list=PLOuZs07rc_SX1tYbWiDJA2JXv5Bj0z9Ug" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="ratio ratio-16x9">
+              <iframe src="https://www.youtube.com/embed/videoseries?list=PLPD3LCnamxhvzyEaRpUSM_45hCHQTD0Lg" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Message Modal -->
+  <div class="modal fade message-modal" id="messageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Mensaje Motivacional del Día</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-message"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verse Modal -->
+  <div class="modal fade verse-modal" id="verseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Versículo del Día</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-verse"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Snoopy Modal -->
+  <div class="modal fade snoopy-modal" id="snoopyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Consejos de Salud y Enfermería</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="https://i.pinimg.com/originals/59/fc/fc/59fcfc5a2add2860f3d652e22ef9692b.png" alt="Snoopy Nurse" class="profile-img mb-4">
+          <div id="health-tips"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary notification-toggle" id="notificationBtn">
+    Activar Notificaciones
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const messages = [
+      "Cada día es una nueva oportunidad para brillar.",
+      "Tu potencial es ilimitado, ¡sigue adelante!",
+      "La fe mueve montañas.",
+      "Eres más fuerte de lo que piensas.",
+      "Con Dios, todo es posible."
+    ];
+
+    const verses = [
+      "Filipenses 4:13 - Todo lo puedo en Cristo que me fortalece.",
+      "Jeremías 29:11 - Porque yo sé los planes que tengo para vosotros.",
+      "Salmos 23:1 - Jehová es mi pastor; nada me faltará.",
+      "Josué 1:9 - Esfuérzate y sé valiente.",
+      "Proverbios 3:5-6 - Confía en el Señor con todo tu corazón."
+    ];
+
+    const healthTips = [
+      "Mantén una buena higiene de manos - Es la mejor manera de prevenir infecciones.",
+      "Escucha activamente a tus pacientes - La comunicación es clave en el cuidado de la salud.",
+      "Mantén actualizado tu conocimiento médico - La medicina evoluciona constantemente.",
+      "Cuida tu postura al levantar pacientes - Tu espalda te lo agradecerá.",
+      "Toma descansos regulares - Un enfermero descansado es más eficiente.",
+      "Mantén una rutina de ejercicios - La salud del cuidador es importante.",
+      "Practica la empatía - Ponte en el lugar de tus pacientes.",
+      "Organiza tu material de trabajo - La eficiencia salva vidas.",
+      "Mantén la calma en emergencias - Tu serenidad tranquilizará a los pacientes.",
+      "Trabaja en equipo - La colaboración mejora el cuidado del paciente."
+    ];
+
+    function getRandomItem(array) {
+      return array[Math.floor(Math.random() * array.length)];
+    }
+
+    function updateDailyContent() {
+      const dailyMessage = getRandomItem(messages);
+      const dailyVerse = getRandomItem(verses);
+      
+      document.getElementById('daily-message').textContent = dailyMessage;
+      document.getElementById('modal-message').textContent = dailyMessage;
+      document.getElementById('daily-verse').textContent = dailyVerse;
+      document.getElementById('modal-verse').textContent = dailyVerse;
+    }
+
+    function updateHealthTips() {
+      const tipsContainer = document.getElementById('health-tips');
+      tipsContainer.innerHTML = '';
+      
+      const selectedTips = new Set();
+      while(selectedTips.size < 5) {
+        selectedTips.add(getRandomItem(healthTips));
+      }
+      
+      selectedTips.forEach(tip => {
+        const tipElement = document.createElement('div');
+        tipElement.className = 'health-tip';
+        tipElement.textContent = tip;
+        tipsContainer.appendChild(tipElement);
+      });
+    }
+
+    updateDailyContent();
+    updateHealthTips();
+
+    document.getElementById('notificationBtn').addEventListener('click', async () => {
+      try {
+        if (!('Notification' in window)) {
+          alert('Tu navegador no soporta notificaciones.');
+          return;
+        }
+
+        const permission = await Notification.requestPermission();
+        if (permission === 'granted') {
+          scheduleNotification();
+          alert('¡Notificaciones activadas! Recibirás inspiración diaria a las 6:00 AM.');
+        }
+      } catch (error) {
+        console.error('Error al configurar las notificaciones:', error);
+      }
+    });
+
+    function scheduleNotification() {
+      setInterval(() => {
+        const now = new Date();
+        if (now.getHours() === 6 && now.getMinutes() === 0) {
+          new Notification('¡Buenos días!', {
+            body: `${getRandomItem(messages)}\n\n${getRandomItem(verses)}`,
+            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700"/></svg>'
+          });
+        }
+      }, 60000);
+    }
+
+    setInterval(() => {
+      const now = new Date();
+      if (now.getHours() === 0 && now.getMinutes() === 0) {
+        updateDailyContent();
+        updateHealthTips();
+      }
+    }, 60000);
+
+    document.getElementById('snoopyModal').addEventListener('show.bs.modal', updateHealthTips);
+  </script>
+</body></html>
